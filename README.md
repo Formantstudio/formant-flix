@@ -2,7 +2,7 @@
 
 A Netflix-style video streaming app built on top of the [Formant Audio](https://www.youtube.com/@formantaudio) YouTube channel. Built as a portfolio project demonstrating production-grade React development.
 
-**Live:** [formant-flix.web.app](https://formant-flix.web.app)
+**Live:** [flix.formant.ca](https://flix.formant.ca)
 
 ---
 
