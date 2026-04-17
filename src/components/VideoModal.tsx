@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import type { YouTubeVideo } from "../types/youtube";
 import { parseDuration } from "../lib/youtube";
 import { useWatchlist } from "../hooks/useWatchlist";
@@ -18,10 +19,17 @@ export default function VideoModal({ video, suggestions, onClose, onSelect }: Pr
   const modalRef = useRef<HTMLDivElement>(null);
   const { isInList, toggle } = useWatchlist();
   const { recordWatch } = useWatchHistory();
+  const navigate = useNavigate();
+
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
   const handlePlay = () => {
-    setPlaying(true);
     recordWatch(video);
+    if (isMobile) {
+      navigate(`/watch/${video.id}`);
+      return;
+    }
+    setPlaying(true);
   };
 
   const thumb =
