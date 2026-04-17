@@ -1,0 +1,68 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, transparent 100%);
+  transition: background 0.3s ease;
+  gap: 16px;
+}
+
+.nav.scrolled { background: #141414; }
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-shrink: 0;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: var(--accent);
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.flix { color: var(--text); }
+
+.link {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  transition: color 0.15s;
+  white-space: nowrap;
+}
+
+.link:hover { color: var(--text); }
+
+.signInBtn {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--text);
+  background: var(--accent);
+  padding: 6px 16px;
+  border-radius: 4px;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+
+.signInBtn:hover { background: var(--accent-hover); }
+
+@media (max-width: 600px) {
+  .logo { font-size: 1.1rem; letter-spacing: 1px; }
+  .link { display: none; }
+}

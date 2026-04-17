@@ -1,0 +1,145 @@
+.page {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.bg {
+  position: fixed;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.nav {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 4%;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+.flix { color: var(--text); }
+
+.signInBtn {
+  padding: 8px 20px;
+  background: var(--accent);
+  color: var(--text);
+  font-weight: 700;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+
+.signInBtn:hover { background: var(--accent-hover); }
+
+.hero {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 80px 4% 60px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  text-shadow: 2px 2px 12px rgba(0,0,0,0.8);
+}
+
+.subtitle {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 36px;
+  max-width: 600px;
+}
+
+.cta {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.ctaBtn {
+  padding: 14px 36px;
+  background: var(--accent);
+  color: var(--text);
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+
+.ctaBtn:hover { background: var(--accent-hover); }
+
+.ctaBtnSecondary {
+  padding: 14px 36px;
+  background: rgba(109,109,110,0.7);
+  color: var(--text);
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+
+.ctaBtnSecondary:hover { background: rgba(109,109,110,0.5); }
+
+.divider {
+  position: relative;
+  z-index: 1;
+  height: 8px;
+  background: #333;
+  margin: 60px 0;
+}
+
+.features {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2px;
+  background: #333;
+  border-top: 2px solid #333;
+}
+
+.feature {
+  background: var(--bg);
+  padding: 48px 5%;
+  text-align: center;
+}
+
+.feature h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.feature p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+}

@@ -1,0 +1,166 @@
+.card {
+  flex: 0 0 auto;
+  width: 240px;
+  cursor: pointer;
+  border-radius: var(--card-radius);
+  transition: transform 0.25s ease, z-index 0s;
+  position: relative;
+  z-index: 1;
+}
+
+.card:hover {
+  transform: scale(1.08);
+  z-index: 10;
+}
+
+/* Thumb */
+.thumbWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--card-radius) var(--card-radius) 0 0;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: filter 0.25s;
+}
+
+.card:hover .thumb {
+  filter: brightness(0.55);
+}
+
+.duration {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  background: rgba(0,0,0,0.85);
+  color: var(--text);
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 2px 5px;
+  border-radius: 2px;
+  transition: opacity 0.2s;
+}
+
+.card:hover .duration {
+  opacity: 0;
+}
+
+/* Hover overlay (play icon centered over image) */
+.hoverOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.card:hover .hoverOverlay {
+  opacity: 1;
+}
+
+.playIcon {
+  font-size: 2rem;
+  color: var(--text);
+  background: rgba(255,255,255,0.2);
+  border: 2px solid rgba(255,255,255,0.7);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 3px;
+  transition: background 0.15s, transform 0.15s;
+}
+
+.playIcon:hover {
+  background: rgba(255,255,255,0.35);
+  transform: scale(1.1);
+}
+
+/* Info panel — hidden, slides up on hover */
+.infoPanel {
+  background: #222;
+  border-radius: 0 0 var(--card-radius) var(--card-radius);
+  padding: 10px 12px 12px;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: max-height 0.25s ease, opacity 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover .infoPanel {
+  max-height: 120px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.infoActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.playBtn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--text);
+  color: #000;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 2px;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+
+.playBtn:hover {
+  background: rgba(255,255,255,0.8);
+}
+
+.infoYear {
+  font-size: 0.75rem;
+  color: #46d369;
+  font-weight: 600;
+}
+
+.infoViews {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-left: auto;
+}
+
+.infoTitle {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+
+.infoDuration {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+}
+
+@media (max-width: 600px) {
+  .card { width: 160px; }
+  .infoPanel { display: none; }
+}

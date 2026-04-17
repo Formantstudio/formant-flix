@@ -1,0 +1,45 @@
+.page {
+  min-height: 100vh;
+  background: var(--bg);
+  overflow-x: hidden;
+}
+
+.rows {
+  padding-top: 24px;
+  padding-bottom: 80px;
+}
+
+/* Hero skeleton matches HeroBanner height */
+.heroSkeleton {
+  width: 100%;
+  height: 80vh;
+  min-height: 500px;
+  background: linear-gradient(90deg, #1a1a1a 25%, #242424 50%, #1a1a1a 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.8s infinite;
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+.error {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  font-size: 1rem;
+}
+
+.searchResults {
+  padding-top: calc(var(--nav-height) + 40px);
+  min-height: 100vh;
+}
+
+.noResults {
+  padding: 0 4%;
+  color: var(--text-muted);
+  font-size: 1rem;
+}
