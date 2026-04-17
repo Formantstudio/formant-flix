@@ -1,73 +1,65 @@
-# React + TypeScript + Vite
+# Formant-Flix
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Netflix-style video streaming app built on top of the [Formant Audio](https://www.youtube.com/@formantaudio) YouTube channel. Built as a portfolio project demonstrating production-grade React development.
 
-Currently, two official plugins are available:
+**Live:** [formant-flix.web.app](https://formant-flix.web.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React 18** + **TypeScript** + **Vite**
+- **Firebase Auth** — email/password + Google OAuth
+- **Firestore** — user profiles, watchlist, watch history
+- **Firebase Hosting** — SPA with security headers
+- **YouTube Data API v3** — channel, playlists, video details
+- **CSS Modules** — scoped component styles throughout
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Browse videos from the Formant Audio YouTube channel organized by playlist
+- Hero banner, horizontal scroll rows with arrow navigation, shimmer loading skeletons
+- Click any video to open a Netflix-style detail modal with suggestions
+- Embedded YouTube player with autoplay
+- Add/remove videos to **My List** (persisted to Firestore)
+- **Continue Watching** row built from watch history
+- Search across all channel videos
+- Google and email/password authentication
+- Protected routes — browse requires sign-in
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Architecture Notes
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- YouTube API key is stored server-side in Google Secret Manager via Firebase Cloud Functions (v2). The client never sees it.
+- Rate limiting enforced per-user via Firestore transactions (30 calls/min)
+- Zero-trust callable functions: all calls require a valid Firebase ID token
+- Firestore rules scope all reads/writes to the authenticated user's own documents
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Local Setup
+
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Create a `.env` file at the root:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```
+VITE_YOUTUBE_API_KEY=your_youtube_api_key
+VITE_YOUTUBE_CHANNEL_ID=your_channel_id
+```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
+```
+
+## Deploy
+
+```bash
+npm run build
+firebase deploy --only hosting
+```
+
+Functions:
+
+```bash
+firebase deploy --only "functions:getChannelData,functions:getPlaylistVideos"
 ```
